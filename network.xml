@@ -1,0 +1,146 @@
+<network>
+	<element type="tap" id="sir14tap1" configurationfile="sir14tap1_20140516" />
+	<element type="tap" id="sir11tap1" configurationfile="sir14tap1_20140516" />
+	<element type="tap" id="veg14tap1" configurationfile="sir14tap1_20140516" />
+	<element type="tap" id="alttap1" configurationfile="sir14tap1_20140516" />
+	<element type="tap" id="austap1" configurationfile="sir14tap1_20140516" />
+	
+	<element type="router" id="sirl2core1" />
+	<element type="router" id="sirl2core2" />
+	
+	<element type="router" id="sircore">
+		<port name="Ten 1/1/1" />
+		<port name="Ten 2/1/1" />
+	</element>
+	
+	<element type="router" id="sir11agr1" />
+	<element type="router" id="sir11agr2" />
+	<element type="router" id="sir14agr1" />
+	<element type="router" id="sir14agr2" />
+	<element type="router" id="sir11sw12" />
+	<element type="router" id="sirdci3" />
+	<element type="router" id="sir11agr1-vdc2" />
+	
+	<element type="probe" id="sirprobe1" />
+	
+	<connection>
+		<source element="sir14tap1" port="1" />
+		<target element="sircore" port="Ten 1/1/1" />
+	</connection>
+	
+	<connection>
+		<source element="sir14tap1" port="2" />
+		<target element="sircore" port="Ten 2/1/1" />
+	</connection>
+	
+	<connection>
+		<source element="sir14tap1" port="3" />
+		<target element="alttap1" port="4" />
+	</connection>
+	
+	<connection>
+		<source element="sir14tap1" port="4" />
+		<target element="veg14tap1" port="4" />
+	</connection>
+	
+	<connection>
+		<source element="sir14tap1" port="5" />
+		<target element="sir11agr1" port="Eth 2/16" />
+	</connection>
+	
+	
+	<connection>
+		<source element="sir14tap1" port="6" />
+		<target element="sir11agr2" port="Eth 2/16" />
+	</connection>
+	
+	<connection>
+		<source element="sir14tap1" port="7" />
+		<target element="sir14agr1" port="Eth 18/26" />
+	</connection>
+	
+	<connection>
+		<source element="sir14tap1" port="8" />
+		<target element="sir14agr2" port="Eth 18/26" />
+	</connection>
+	
+	<connection>
+		<source element="sir14tap1" port="9" />
+		<target element="sirl2core1" port="Eth 1/30" />
+	</connection>
+	
+	<connection>
+		<source element="sir14tap1" port="10" />
+		<target element="sirl2core2" port="Eth 1/30" />
+	</connection>
+	
+	<connection>
+		<source element="sir14tap1" port="11" />
+		<target element="austap1" port="3" />
+	</connection>
+	
+	<connection>
+		<source element="sir14tap1" port="12" />
+		<target element="sir11sw12" port="Ten 3/2" />
+	</connection>
+	
+	<connection>
+		<source element="sir14tap1" port="13" />
+		<target element="sir11tap1" port="12" />
+	</connection>
+	
+	<connection>
+		<source element="sir14tap1" port="14" />
+		<target element="sirdci3" port="Eth 1/30" />
+	</connection>
+	
+	<connection>
+		<source element="sir14tap1" port="15" />
+		<target element="sir11agr1-vdc2" port="Eth 4/32" />
+	</connection>
+	
+	<connection>
+		<source element="sir14tap1" port="16" />
+		<target element="sircore" port="" />
+	</connection>
+	
+	<connection>
+		<source element="sir14tap1" port="17" />
+		<target element="sircore" port="" />
+	</connection>
+	
+	<connection>
+		<source element="sir14tap1" port="18" />
+		<target element="sircore" port="" />
+	</connection>
+	
+	<connection>
+		<source element="sir14tap1" port="19" />
+		<target element="sircore" port="" />
+	</connection>
+	
+	<connection>
+		<source element="sir14tap1" port="20" />
+		<target element="sircore" port="" />
+	</connection>
+	
+	<connection>
+		<source element="sir14tap1" port="21" />
+		<target element="sirl2core1" port="Eth 1/12" />
+	</connection>
+	
+	<connection>
+		<source element="sir14tap1" port="22" />
+		<target element="sircore" port="" />
+	</connection>
+	
+	<connection>
+		<source element="sir14tap1" port="23" />
+		<target element="sirprobe1" port="a" />
+	</connection>
+	
+	<connection>
+		<source element="sir14tap1" port="24" />
+		<target element="sirprobe1" port="b" />
+	</connection>
+</network>
