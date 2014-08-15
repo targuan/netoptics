@@ -40,7 +40,9 @@ public class FilterUtils {
         TapFilter filter = new TapFilter();
         String lines[] = filterString.split("\n");
 
+        int index = 0;
         for (String line : lines) {
+            index++;
             line = line.trim();
             
             String parts[] = line.split("\t| ", 2);
@@ -64,8 +66,11 @@ public class FilterUtils {
             try {
                 Method setter = TapFilter.class.getMethod("set"+name, String.class);
                 setter.invoke(filter, parts[1].trim());
+                
+                
             } catch (NoSuchMethodException ex) {
                 Logger.getLogger(FilterUtils.class.getName()).log(Level.SEVERE, null, ex);
+                
             } catch (SecurityException ex) {
                 Logger.getLogger(FilterUtils.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IllegalAccessException ex) {

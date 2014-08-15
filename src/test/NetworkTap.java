@@ -40,11 +40,15 @@ public class NetworkTap extends NetworkElement{
     @Override
     public void receiveFrame(NetworkFrameEvent event) {
         NetworkInterface iface = (NetworkInterface) event.getSource();
+        System.out.println("rcv:" +name + " on iface " + iface.getIfaceName());
+        
         
         for(int i = 0;i<getFilterCount();i++) {
                 if(getFilter(i).getInPorts().contains(Integer.valueOf(iface.getIfaceName())) && getFilter(i).match(event.getFrame())) {
+                    
                     for(int fi = 0 ; fi<getFilter(i).getRedirPorts().size();fi++) {
                         NetworkInterface outIface = getIface(String.valueOf(getFilter(i).getRedirPorts().get(fi)));
+                        System.out.println("send:" +name + " on iface " + outIface.getIfaceName());
                         outIface.sendFrame(event.getFrame());
                     }
                     getFilter(i);

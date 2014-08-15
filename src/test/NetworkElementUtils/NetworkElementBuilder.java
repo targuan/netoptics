@@ -35,7 +35,7 @@ public class NetworkElementBuilder {
                 try {
                     ne = NetworkTapBuilder.build(id, element);
                 } catch (FileNotFoundException ex) {
-                    throw new NetworkElementBuilderException("configuration file not found");
+                    throw new NetworkElementBuilderException("configuration file not found "+id);
                 }
                 break;
             case "probe":

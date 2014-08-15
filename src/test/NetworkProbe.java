@@ -24,7 +24,7 @@ public class NetworkProbe extends NetworkElement{
     @Override
     public void receiveFrame(NetworkFrameEvent event) {
         NetworkInterface iface = (NetworkInterface) event.getSource();
-        System.out.println(event.getFrame() + " on iface " + iface.getIfaceName());
+        System.out.println(name + " on iface " + iface.getIfaceName());
     }
     
 }

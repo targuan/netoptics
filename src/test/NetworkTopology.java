@@ -71,6 +71,25 @@ public class NetworkTopology {
                 NetworkElement ne = NetworkElementBuilder.buildElement(e);
                 topology.addNetworkElement(ne);
             }
+            
+            List<Element> connections = element.getChildren("connection");
+            
+            for(Element e: connections) {
+                Element source = e.getChild("source");
+                Element target = e.getChild("target");
+                
+                String sourceName = source.getAttribute("element").getValue();
+                String targetName = target.getAttribute("element").getValue();
+                
+                NetworkElement sourceNE = topology.getNetworkElement(sourceName);
+                NetworkElement targetNE = topology.getNetworkElement(targetName);
+                
+                String sourcePort = source.getAttribute("port").getValue();
+                String targetPort = target.getAttribute("port").getValue();
+                
+                
+                NetworkBus.connect(sourceNE.getIface(sourcePort), targetNE.getIface(targetPort));
+            }
         } catch (JDOMException ex) {
             Logger.getLogger(NetworkTopology.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {

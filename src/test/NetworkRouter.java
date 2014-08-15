@@ -19,4 +19,18 @@ public class NetworkRouter extends NetworkElement{
     public void monitor(NetworkInterface source, NetworkInterface target) {
         source.addNetworkFrameListener(target);
     }
+    
+    @Override
+    public NetworkInterface getIface (String name) {
+        for(NetworkInterface iface : ifaces) {
+            if(iface.getIfaceName().equals(name)) {
+                return iface;
+            }
+        }
+        
+        NetworkInterface ni = new NetworkInterface(this, name);
+        addIface(ni);
+        
+        return ni;
+    }
 }

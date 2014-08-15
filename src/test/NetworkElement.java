@@ -39,6 +39,16 @@ public class NetworkElement implements NetworkFrameListener{
         return ifaces.get(ifIndex);
     }
     
+    public boolean  hasIface(String name) {
+        for(NetworkInterface iface : ifaces) {
+            if(iface.getIfaceName().equals(name)) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+    
     public NetworkInterface getIface (String name) {
         for(NetworkInterface iface : ifaces) {
             if(iface.getIfaceName().equals(name)) {

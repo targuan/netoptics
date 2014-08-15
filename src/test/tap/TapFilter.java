@@ -87,10 +87,13 @@ public class TapFilter {
     }
 
     public void setAction(String action) {
-        if (action.equals("redir")) {
-            this.action = Action.redir;
-        } else if (action.equals("drop")) {
-            this.action = Action.drop;
+        switch (action) {
+            case "redir":
+                setAction(Action.redir);
+                break;
+            case "drop":
+                setAction(Action.drop);
+                break;
         }
     }
 
@@ -126,16 +129,18 @@ public class TapFilter {
     }
     
     public void setRedirPorts(String ports) {
-        String parts[] = ports.split(",");
+        if(!ports.equals("none")) {
+            String parts[] = ports.split(",");
 
-        for (String part : parts) {
-            if (part.contains("-")) {
-                String subparts[] = part.split("-");
-                for(int i = Integer.valueOf(subparts[0]);i<=Integer.valueOf(subparts[1]);i++) {
-                    redirPorts.add(i);
+            for (String part : parts) {
+                if (part.contains("-")) {
+                    String subparts[] = part.split("-");
+                    for(int i = Integer.valueOf(subparts[0]);i<=Integer.valueOf(subparts[1]);i++) {
+                        redirPorts.add(i);
+                    }
+                } else {
+                    redirPorts.add(Integer.valueOf(part));
                 }
-            } else {
-                redirPorts.add(Integer.valueOf(part));
             }
         }
     }
@@ -387,6 +392,8 @@ public class TapFilter {
     
     
     public boolean match(NetworkFrame frame) {
+        System.out.println();
+        System.out.println(id);
         /**
          * L2
          */
@@ -409,7 +416,7 @@ public class TapFilter {
         if(frame.getIpProtocol() != getIpProtocol()) {
             return false;
         }
-        
+        System.out.print("L3 proto ");
         if((frame.getIp4Dst() & getIp4DstMask()) != getIp4Dst()) {
             return false;
         }

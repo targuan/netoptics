@@ -53,9 +53,11 @@ public class Test {
          Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
          }*/
         NetworkTopology topology = NetworkTopology.createNetworkTopology(new File("network.xml"));
-        NetworkElement e = topology.getNetworkElement("sir14tap1");
+        NetworkElement e = topology.getNetworkElement("sirl2core1");
         
-         
+        NetworkFrame frame= new NetworkFrame();
+        frame.setIp4Dst("10.220.212.161");
+        e.getIface("Eth 1/30").sendFrame(frame);
         
     }
 
